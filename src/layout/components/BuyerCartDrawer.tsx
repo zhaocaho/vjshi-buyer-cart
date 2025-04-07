@@ -13,7 +13,11 @@ export function BuyerCartDrawer() {
       onClose={() => {
         dispatch(closeCartDrawer());
       }}
-      styles={{ header: { display: "none" } }}
+      styles={{
+        header: { display: "none" },
+        body: { padding: 0 },
+        wrapper: { width: "100%", maxWidth: "514px" },
+      }}
     ></Drawer>
   );
 }
