@@ -8,12 +8,12 @@ export function BuyerCartDrawer() {
 
   return (
     <Drawer
-      title="购物车"
       placement="right"
       open={cartDrawerOpen}
       onClose={() => {
         dispatch(closeCartDrawer());
       }}
+      styles={{ header: { display: "none" } }}
     ></Drawer>
   );
 }
