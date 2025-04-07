@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { CartIcon } from "./components/cartIcon";
+import { CartIcon } from "./components/CartIcon";
 import { BuyerCartDrawer } from "./components/BuyerCartDrawer";
 
 interface Props {
