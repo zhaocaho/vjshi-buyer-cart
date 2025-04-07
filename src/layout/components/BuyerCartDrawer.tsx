@@ -1,11 +1,10 @@
 import { useAppSelector } from "@/hooks/reduxHooks";
+import { Drawer } from "antd";
 
 export function BuyerCartDrawer() {
-  const { showDrawerOpen } = useAppSelector((state) => state.cart);
-  console.log("showDrawerOpen:", showDrawerOpen);
+  const { cartDrawerOpen } = useAppSelector((state) => state.cart);
+
   return (
-    <div className="w-[100px] h-[100px] bg-amber-300 absolute right-0 top-0">
-      购物车弹窗
-    </div>
+    <Drawer title="购物车" placement="right" open={cartDrawerOpen}></Drawer>
   );
 }

@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 interface CartState {
-  showDrawerOpen: boolean;
+  cartDrawerOpen: boolean;
 }
 
 const initialState: CartState = {
-  showDrawerOpen: false,
+  cartDrawerOpen: false,
 };
 
 export const cartSlice = createSlice({
@@ -13,10 +13,10 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     openCartDrawer: (state) => {
-      state.showDrawerOpen = true;
+      state.cartDrawerOpen = true;
     },
     closeCartDrawer: (state) => {
-      state.showDrawerOpen = false;
+      state.cartDrawerOpen = false;
     },
   },
 });
