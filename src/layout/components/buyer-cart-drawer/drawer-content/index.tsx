@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Tabs, Checkbox } from "antd";
-import { CheckboxChangeEvent } from "antd/es/checkbox";
+import { Tabs } from "antd";
 import styles from "./drawer-content.module.css";
+import ProductItem from "./ProductItem";
 
 const tabDataList = [
   {
@@ -49,18 +49,7 @@ const tabDataList = [
   {
     key: "3",
     title: "音乐",
-    data: [
-      {
-        auditStatus: "SUCCESS",
-        coverImage:
-          "https://pp.vjshi.com/p/2025-02-13/d609f6ce27b840618805fb12de75842c/main.jpg",
-        price: 100,
-        softwareType: "视频素材",
-        title: "视频素材",
-        licType: "NP",
-        vid: "123",
-      },
-    ],
+    data: [],
   },
 ];
 export default function DrawerContent() {
@@ -68,15 +57,6 @@ export default function DrawerContent() {
 
   const handleTabChange = (key: string) => {
     setActiveTab(key);
-  };
-
-  const handleCheckboxChange = (
-    e: CheckboxChangeEvent,
-    tabKey: string,
-    index: number
-  ) => {
-    // 在这里处理 Checkbox 的状态变化，例如更新数据源
-    console.log(`Tab ${tabKey} - 选项 ${index + 1}：`, e.target.checked);
   };
 
   return (
@@ -95,17 +75,18 @@ export default function DrawerContent() {
         ),
         key: tab.key,
         children: (
-          <div>
-            {tab.data.map((data, index) => (
-              <div key={index}>
-                <Checkbox
-                  onChange={(e) => handleCheckboxChange(e, tab.key, index)}
-                >
-                  {data.title}
-                </Checkbox>
-              </div>
-            ))}
-          </div>
+          <form className="flex flex-col h-full">
+            <div className="flex-1 flex flex-col w-full overflow-auto pt-5 px-5 lg:pt-3 lg:px-0">
+              {tab.data.map((data, index) => (
+                <div key={index}>
+                  <ProductItem
+                    imageSrc={data.coverImage}
+                    description={data.title}
+                  />
+                </div>
+              ))}
+            </div>
+          </form>
         ),
       }))}
     ></Tabs>
