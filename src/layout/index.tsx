@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import GlobalActions from "./components/global-actions";
-import BuyerCartDrawer from "./components/BuyerCartDrawer";
+import BuyerCartDrawer from "./components/buyer-cart-drawer";
 
 interface Props {
   children: ReactNode;
