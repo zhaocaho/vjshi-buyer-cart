@@ -15,7 +15,7 @@ export const handlers = [
         },
         {
           auditStatus: "SUCCESS",
-          coverImage: "hhttps://picsum.photos/300/200",
+          coverImage: "https://picsum.photos/300/200",
           price: 50,
           softwareType: "视频素材",
           title: "视频二",
