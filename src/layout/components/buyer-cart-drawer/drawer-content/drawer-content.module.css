@@ -16,3 +16,10 @@
 .customTabs :global(.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn) {
   color: #000000 !important; /* 黑色 - 选中状态 */
 }
+
+.customTabs :global(.ant-tabs-content) {
+  height: 100%;
+}
+.customTabs :global(.ant-tabs-tabpane) {
+  height: 100%;
+}

@@ -21,8 +21,16 @@ export default function BuyerCartDrawer() {
       }}
       styles={{
         header: { display: "none" },
-        body: { padding: 0 },
-        wrapper: { width: "100%", maxWidth: "514px" },
+        body: {
+          padding: 0,
+          maxHeight: "100%",
+          display: "flex",
+          flexDirection: "column",
+        },
+        wrapper: {
+          width: "100%",
+          maxWidth: "514px",
+        },
       }}
     >
       <DrawerHeader onClose={() => closeDrawer()} />
