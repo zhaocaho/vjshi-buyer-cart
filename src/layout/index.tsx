@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
-import { CartIcon } from "./components/CartIcon";
-import { BuyerCartDrawer } from "./components/BuyerCartDrawer";
+import GlobalActions from "./components/global-actions";
+import BuyerCartDrawer from "./components/BuyerCartDrawer";
 
 interface Props {
   children: ReactNode;
@@ -9,7 +9,7 @@ export default function Layout({ children }: Props) {
   return (
     <div>
       {children}
-      <CartIcon />
+      <GlobalActions />
       <BuyerCartDrawer />
     </div>
   );
