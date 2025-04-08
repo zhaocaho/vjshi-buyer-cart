@@ -41,26 +41,23 @@ export default function DrawerContent() {
       onChange={handleTabChange}
       className={styles.customTabs}
       tabBarGutter={40}
-      tabBarStyle={{ margin: "0 40px" }}
+      tabBarStyle={{ margin: "0 40px", height: "56px" }}
       style={{ flex: 1, minHeight: 0 }}
       items={tabDataList.map((tab) => ({
         label: <TabTitle title={tab.title} count={tab.items.length} />,
         key: tab.key,
         children: (
-          <form className="flex flex-col h-full" onSubmit={handleSubmit}>
-            <div className="flex-1 flex flex-col w-full overflow-auto pt-5 px-5 lg:pt-3 lg:px-0">
+          <form className="flex h-full flex-col" onSubmit={handleSubmit}>
+            <div className="flex w-full flex-1 flex-col overflow-auto px-5 pt-5 lg:px-0 lg:pt-3">
               {tab.items.map((items, index) => (
                 <div key={index}>
-                  <ProductItem
-                    imageSrc={items.coverImage}
-                    description={items.title}
-                  />
+                  <ProductItem imageSrc={items.coverImage} description={items.title} />
                 </div>
               ))}
             </div>
             <hr
               aria-orientation="horizontal"
-              className="dioa-divider border-0 border-b w-full h-[0px] border-current text-[#F0F0F0]"
+              className="dioa-divider h-[0px] w-full border-0 border-b border-current text-[#F0F0F0]"
             ></hr>
             <BuyerPanel />
           </form>

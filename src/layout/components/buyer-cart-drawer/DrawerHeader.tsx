@@ -3,11 +3,8 @@ interface DrawerHeaderProps {
 }
 export default function DrawerHeader({ onClose }: DrawerHeaderProps) {
   return (
-    <header
-      className="w-full flex items-center justify-between pt-9 pb-8 px-10"
-      onClick={onClose}
-    >
-      <span className="text-2xl">购物车</span>
+    <header className="flex w-full items-center justify-between px-10 pt-9 pb-4" onClick={onClose}>
+      <span className="text-2xl leading-[36px]">购物车</span>
       <div tabIndex={-1} className="cursor-pointer">
         <svg viewBox="0 0 24 24" width="28" height="28" className="dioa-icon">
           <g
