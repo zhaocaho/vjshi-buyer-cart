@@ -1,12 +1,25 @@
-import { useAppDispatch } from "@/hooks/reduxHooks";
-import { openCartDrawer } from "@/store/slices/cartSlices";
+import { useAppDispatch, useAppSelector } from "@/hooks/reduxHooks";
+import {
+  fetchCartItems,
+  openCartDrawer,
+  selectCartCount,
+} from "@/store/slices/cartSlices";
+import { useEffect } from "react";
 
 export default function CartIcon() {
   const dispatch = useAppDispatch();
+  const { showCartIcon } = useAppSelector((state) => state.cart);
+  const cartCount = useAppSelector(selectCartCount);
+
+  useEffect(() => {
+    dispatch(fetchCartItems());
+  }, [dispatch]);
 
   const handleIconClick = () => {
     dispatch(openCartDrawer());
   };
+
+  if (!showCartIcon) return;
 
   return (
     <div
@@ -30,7 +43,7 @@ export default function CartIcon() {
       </svg>
 
       <span className="absolute top-0 right-0 w-7 h-7 rounded-full bg-[#0071E3] flex items-center justify-center text-white text-xs ">
-        12
+        {cartCount}
       </span>
     </div>
   );

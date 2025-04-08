@@ -22,7 +22,7 @@ export const handlers = [
           softwareType: "视频素材",
           title: "视频二",
           licType: "NP",
-          vid: "123",
+          vid: 999,
         },
       ],
     });
@@ -57,6 +57,16 @@ export const handlers = [
           title: "江南音乐",
           licType: "NP",
           mid: 123,
+        },
+        {
+          auditStatus: "SUCCESS",
+          coverImage:
+            "https://pp.vjshi.com/p/2025-02-13/d609f6ce27b840618805fb12de75842c/main.jpg",
+          price: 100,
+          softwareType: "音乐素材",
+          title: "江南音乐二",
+          licType: "NP",
+          mid: 124,
         },
       ],
     });
