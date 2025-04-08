@@ -39,7 +39,7 @@ const initialState: CartState = {
   fotos: [],
   musics: [],
   showCartIcon: false,
-  cartDrawerOpen: false,
+  cartDrawerOpen: true,
 };
 
 export const fetchCartItems = createAsyncThunk("cart/fetchItems", async () => {

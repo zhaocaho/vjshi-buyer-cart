@@ -6,8 +6,7 @@ export const handlers = [
       data: [
         {
           auditStatus: "SUCCESS",
-          coverImage:
-            "https://pp.vjshi.com/p/2025-02-13/d609f6ce27b840618805fb12de75842c/main.jpg",
+          coverImage: "https://picsum.photos/300/200",
           price: 100,
           softwareType: "视频素材",
           title: "视频一",
@@ -16,8 +15,7 @@ export const handlers = [
         },
         {
           auditStatus: "SUCCESS",
-          coverImage:
-            "https://pp.vjshi.com/p/2024-12-25/8ccf2d2ee68446828f388fedaba0efb1/main.jpg",
+          coverImage: "hhttps://picsum.photos/300/200",
           price: 50,
           softwareType: "视频素材",
           title: "视频二",
@@ -33,8 +31,7 @@ export const handlers = [
       data: [
         {
           auditStatus: "SUCCESS",
-          coverImage:
-            "https://pp.vjshi.com/p/2025-02-13/d609f6ce27b840618805fb12de75842c/main.jpg",
+          coverImage: "https://picsum.photos/300/200",
           price: 100,
           softwareType: "图片素材",
           title: "海边图",
@@ -50,8 +47,7 @@ export const handlers = [
       data: [
         {
           auditStatus: "SUCCESS",
-          coverImage:
-            "https://pp.vjshi.com/p/2025-02-13/d609f6ce27b840618805fb12de75842c/main.jpg",
+          coverImage: "https://picsum.photos/300/200",
           price: 100,
           softwareType: "音乐素材",
           title: "江南音乐",
@@ -60,8 +56,7 @@ export const handlers = [
         },
         {
           auditStatus: "SUCCESS",
-          coverImage:
-            "https://pp.vjshi.com/p/2025-02-13/d609f6ce27b840618805fb12de75842c/main.jpg",
+          coverImage: "https://picsum.photos/300/200",
           price: 100,
           softwareType: "音乐素材",
           title: "江南音乐二",
