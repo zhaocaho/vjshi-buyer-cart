@@ -5,7 +5,7 @@ interface CartState {
 }
 
 const initialState: CartState = {
-  cartDrawerOpen: false,
+  cartDrawerOpen: true,
 };
 
 export const cartSlice = createSlice({

@@ -2,6 +2,7 @@ import { useAppDispatch, useAppSelector } from "@/hooks/reduxHooks";
 import { closeCartDrawer } from "@/store/slices/cartSlices";
 import { Drawer } from "antd";
 import DrawerHeader from "./DrawerHeader";
+import DrawerContent from "./drawer-content/index";
 
 export default function BuyerCartDrawer() {
   const dispatch = useAppDispatch();
@@ -25,6 +26,7 @@ export default function BuyerCartDrawer() {
       }}
     >
       <DrawerHeader onClose={() => closeDrawer()} />
+      <DrawerContent />
     </Drawer>
   );
 }

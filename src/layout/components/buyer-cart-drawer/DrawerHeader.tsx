@@ -13,9 +13,9 @@ export default function DrawerHeader({ onClose }: DrawerHeaderProps) {
           <g
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           >
             <line x1="7" y1="7" x2="17" y2="17"></line>
             <line x1="7" y1="17" x2="17" y2="7"></line>

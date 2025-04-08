@@ -1,0 +1,18 @@
+.customTabs :global(.ant-tabs-ink-bar) {
+  border-radius: 4px;
+  height: 3px !important;
+  background-color: #0d0d0d;
+}
+
+.customTabs :global(.ant-tabs-tab) {
+  color: #808080; /* 灰色 - 未选中状态 */
+}
+
+.customTabs :global(.ant-tabs-tab:hover) {
+  color: #000000; /* 黑色 - 悬停状态 */
+}
+
+/* 增加选择器特异性 */
+.customTabs :global(.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn) {
+  color: #000000 !important; /* 黑色 - 选中状态 */
+}
