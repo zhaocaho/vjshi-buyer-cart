@@ -1,31 +1,34 @@
-import { Checkbox } from "antd";
+import { Checkbox, CheckboxChangeEvent } from "antd";
 
-export default function BuyerPanel() {
+interface Props {
+  checked: boolean;
+  onChange?: (e: CheckboxChangeEvent) => void;
+}
+
+export default function BuyerPanel({ checked = false, onChange }: Props) {
   return (
-    <div className="w-full h-[170px] pl-10 pr-10 pt-7 pb-7 flex flex-col justify-between">
-      <div className="w-full flex justify-between">
+    <div className="flex h-[170px] w-full flex-col justify-between pt-7 pr-10 pb-7 pl-10">
+      <div className="flex w-full justify-between">
         <div className="flex items-center">
-          <Checkbox />
+          <Checkbox checked={checked} onChange={onChange} />
           <span>全选</span>
         </div>
-        <div className="flex flex-1 justify-end space-x-3 items-center text-base">
-          <div className="flex space-x-1 text-neutral-60">
+        <div className="flex flex-1 items-center justify-end space-x-3 text-base">
+          <div className="text-neutral-60 flex space-x-1">
             <span>已选</span>
             <span>4</span>
             <span>件</span>
           </div>
-          <div className="flex space-x-1 items-center">
+          <div className="flex items-center space-x-1">
             <span className="font-medium">总计：</span>
-            <div className="flex space-x-1 items-center text-[#EE4A4A]">
+            <div className="flex items-center space-x-1 text-[#EE4A4A]">
               <span className="text-4xl font-medium">194</span>
-              <span className="leading-none pt-[18px] pb-[10px]">元</span>
+              <span className="pt-[18px] pb-[10px] leading-none">元</span>
             </div>
           </div>
         </div>
       </div>
-      <button className="w-full h-14 bg-black text-white rounded-[55px] text-base">
-        立即购买
-      </button>
+      <button className="h-14 w-full rounded-[55px] bg-black text-base text-white">立即购买</button>
     </div>
   );
 }

@@ -1,11 +1,7 @@
 import { getCartFotos, getCartMusics, getCartVideos } from "@/api/cart";
-import {
-  createAsyncThunk,
-  createSelector,
-  createSlice,
-} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSelector, createSlice } from "@reduxjs/toolkit";
 
-interface CartItem {
+interface BaseCartItem {
   auditStatus: "SUCCESS" | "FAIL";
   coverImage: string;
   price: number;
@@ -14,17 +10,19 @@ interface CartItem {
   licType: "NP" | "LP" | "LPPLUS";
 }
 
-interface VideoCartItem extends CartItem {
+interface VideoCartItem extends BaseCartItem {
   vid: number;
 }
 
-interface FotoCartItem extends CartItem {
+interface FotoCartItem extends BaseCartItem {
   fid: number;
 }
 
-interface MusicCartItem extends CartItem {
+interface MusicCartItem extends BaseCartItem {
   mid: number;
 }
+
+export type CartItem = VideoCartItem | FotoCartItem | MusicCartItem;
 
 interface CartState {
   videos: VideoCartItem[];
@@ -84,14 +82,12 @@ export const cartSlice = createSlice({
 
 export const { openCartDrawer, closeCartDrawer } = cartSlice.actions;
 
-export const { selectVideosCount, selectFotosCount, selectMusicsCount } =
-  cartSlice.selectors;
+export const { selectVideosCount, selectFotosCount, selectMusicsCount } = cartSlice.selectors;
 
 // 创建一个记忆化的选择器来计算总数
 export const selectCartCount = createSelector(
   [selectVideosCount, selectFotosCount, selectMusicsCount],
-  (videosCount, fotosCount, musicsCount) =>
-    videosCount + fotosCount + musicsCount
+  (videosCount, fotosCount, musicsCount) => videosCount + fotosCount + musicsCount,
 );
 
 export default cartSlice.reducer;
