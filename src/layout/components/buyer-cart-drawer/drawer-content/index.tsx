@@ -117,8 +117,8 @@ export default function DrawerContent() {
         label: <TabTitle title={tab.title} count={tab.items.length} />,
         key: tab.key,
         children: (
-          <form className="flex h-full flex-col" onSubmit={handleSubmit}>
-            <div className="flex w-full flex-1 flex-col overflow-auto px-5 pt-5 lg:px-0 lg:pt-3">
+          <form className="flex h-full w-full flex-col" onSubmit={handleSubmit}>
+            <div className="flex w-full flex-1 flex-col overflow-auto px-5 pt-5">
               {tab.items.length === 0 ? (
                 <NoProduct />
               ) : (
