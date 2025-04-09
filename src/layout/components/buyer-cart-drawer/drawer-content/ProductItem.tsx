@@ -93,7 +93,7 @@ export default function ProductItem({ item, id, checked, price, onChange, onDele
             >
               <g>
                 <g style={{ opacity: 0 }}>
-                  <rect x="0" y="0" width="16" height="16" rx="0" fill="#FEFEFE" fill-opacity="1" />
+                  <rect x="0" y="0" width="16" height="16" rx="0" fill="#FEFEFE" fillOpacity="1" />
                 </g>
                 <g transform="matrix(0,-1,-1,0,22,22)">
                   <path

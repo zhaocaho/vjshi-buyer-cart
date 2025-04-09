@@ -14,16 +14,16 @@ export default function NoProduct() {
           >
             <g>
               <g>
-                <rect x="0" y="0" width="80" height="80" rx="0" fill="#F6F6F6" fill-opacity="0" />
+                <rect x="0" y="0" width="80" height="80" rx="0" fill="#F6F6F6" fillOpacity="0" />
               </g>
               <g>
-                <rect x="15" y="21" width="20" height="14" rx="4" fill="#EDEDED" fill-opacity="1" />
+                <rect x="15" y="21" width="20" height="14" rx="4" fill="#EDEDED" fillOpacity="1" />
               </g>
               <g>
-                <rect x="44" y="21" width="20" height="14" rx="4" fill="#EDEDED" fill-opacity="1" />
+                <rect x="44" y="21" width="20" height="14" rx="4" fill="#EDEDED" fillOpacity="1" />
               </g>
               <g>
-                <rect x="15" y="45" width="49" height="14" rx="4" fill="#EDEDED" fill-opacity="1" />
+                <rect x="15" y="45" width="49" height="14" rx="4" fill="#EDEDED" fillOpacity="1" />
               </g>
               <g transform="matrix(-1,0,0,-1,76,74)">
                 <path

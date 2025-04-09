@@ -96,6 +96,7 @@ export default function DrawerContent() {
   };
 
   const handleDeleteItem = (itemId: number) => {
+    // TODO 未模拟请求，不是真实删除
     dispatch(deleteCartItem({ id: itemId, type: activeTab }));
   };
   const calculateTotalPrice = () => {
