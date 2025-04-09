@@ -6,7 +6,7 @@ export const handlers = [
       data: [
         {
           auditStatus: "SUCCESS",
-          coverImage: "https://picsum.photos/300/200",
+          coverImage: "/test.jpg",
           price: 738,
           softwareType: "视频素材",
           title: "视频一",
@@ -15,7 +15,7 @@ export const handlers = [
         },
         {
           auditStatus: "FAIL",
-          coverImage: "https://picsum.photos/300/200",
+          coverImage: "/test.jpg",
           price: 50,
           softwareType: "AE模版",
           title: "视频二",
@@ -24,7 +24,7 @@ export const handlers = [
         },
         {
           auditStatus: "SUCCESS",
-          coverImage: "https://picsum.photos/300/200",
+          coverImage: "/test.jpg",
           price: 50,
           softwareType: "C4D模版",
           title: "视频三",
@@ -33,7 +33,7 @@ export const handlers = [
         },
         {
           auditStatus: "SUCCESS",
-          coverImage: "https://picsum.photos/300/200",
+          coverImage: "/test.jpg",
           price: 50,
           softwareType: "视频素材",
           title: "视频四",
@@ -49,7 +49,7 @@ export const handlers = [
       data: [
         {
           auditStatus: "SUCCESS",
-          coverImage: "https://picsum.photos/300/200",
+          coverImage: "/test.jpg",
           price: 100,
           softwareType: "图片素材",
           title: "海边图",
@@ -58,7 +58,7 @@ export const handlers = [
         },
         {
           auditStatus: "SUCCESS",
-          coverImage: "https://picsum.photos/300/200",
+          coverImage: "/test.jpg",
           price: 153,
           softwareType: "AI模版",
           title: "海边图1",
@@ -74,7 +74,7 @@ export const handlers = [
       data: [
         {
           auditStatus: "SUCCESS",
-          coverImage: "https://picsum.photos/300/200",
+          coverImage: "/test.jpg",
           price: 100,
           title: "江南音乐",
           licType: "NP",
@@ -82,7 +82,7 @@ export const handlers = [
         },
         {
           auditStatus: "SUCCESS",
-          coverImage: "https://picsum.photos/300/200",
+          coverImage: "/test.jpg",
           price: 100,
           title: "江南音乐二",
           licType: "NP",
