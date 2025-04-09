@@ -15,6 +15,7 @@ export default function BuyerCartDrawer() {
   return (
     <Drawer
       placement="right"
+      destroyOnClose
       open={cartDrawerOpen}
       onClose={() => {
         closeDrawer();

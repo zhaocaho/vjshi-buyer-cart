@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Tabs } from "antd";
 import styles from "./drawer-content.module.css";
 import ProductItem from "./ProductItem";
-import { useAppSelector } from "@/hooks/reduxHooks";
+import { useAppDispatch, useAppSelector } from "@/hooks/reduxHooks";
 import TabTitle from "./TabTitle";
 import BuyerPanel from "./BuyerPanel";
-import { CartItem } from "@/store/slices/cartSlices";
+import { CartItem, fetchCartItems } from "@/store/slices/cartSlices";
 
 enum CartItemType {
   video = "video",
@@ -14,6 +14,7 @@ enum CartItemType {
 }
 
 export default function DrawerContent() {
+  const dispatch = useAppDispatch();
   const [activeTab, setActiveTab] = useState<CartItemType>(CartItemType.video);
   const { videos, fotos, musics } = useAppSelector((state) => state.cart);
   const [selectItemIds, setSelectItemIds] = useState<number[]>([]);
@@ -35,6 +36,10 @@ export default function DrawerContent() {
       items: musics,
     },
   ];
+
+  useEffect(() => {
+    dispatch(fetchCartItems());
+  }, [dispatch]);
 
   const getItemId = (item: CartItem) => {
     if ("vid" in item) return item.vid;

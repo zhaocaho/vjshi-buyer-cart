@@ -37,7 +37,7 @@ const initialState: CartState = {
   fotos: [],
   musics: [],
   showCartIcon: false,
-  cartDrawerOpen: true,
+  cartDrawerOpen: false,
 };
 
 export const fetchCartItems = createAsyncThunk("cart/fetchItems", async () => {
@@ -76,6 +76,7 @@ export const cartSlice = createSlice({
       state.videos = action.payload.videos;
       state.fotos = action.payload.fotos;
       state.musics = action.payload.musics;
+      console.log("执行");
     });
   },
 });
