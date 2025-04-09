@@ -13,6 +13,11 @@ import { createAsyncThunk, createSelector, createSlice } from "@reduxjs/toolkit"
 
 export type CartItem = VideoCartItem | FotoCartItem | MusicCartItem;
 
+export enum CartItemType {
+  video = "video",
+  foto = "foto",
+  music = "music",
+}
 interface CartState {
   videos: VideoCartItem[];
   fotos: FotoCartItem[];
@@ -39,7 +44,6 @@ export const fetchCartItems = createAsyncThunk("cart/fetchItems", async () => {
   const videos = videosResponse.data;
   const fotos = fotosResponse.data;
   const musics = musicResponse.data;
-  console.log("videos");
 
   if (videos.length > 0) {
     const response = await getVideoLicTypesBought();
@@ -71,8 +75,6 @@ export const fetchCartItems = createAsyncThunk("cart/fetchItems", async () => {
     });
   }
 
-  console.log("videos222");
-
   return {
     videos,
     fotos,
@@ -90,6 +92,16 @@ export const cartSlice = createSlice({
     closeCartDrawer: (state) => {
       state.cartDrawerOpen = false;
     },
+    deleteCartItem: (state, action) => {
+      const { id, type } = action.payload;
+      if (type === CartItemType.video) {
+        state.videos = state.videos.filter((video) => video.vid !== id);
+      } else if (type === CartItemType.foto) {
+        state.fotos = state.fotos.filter((foto) => foto.fid !== id);
+      } else if (type === CartItemType.music) {
+        state.musics = state.musics.filter((music) => music.mid !== id);
+      }
+    },
   },
   selectors: {
     selectVideosCount: (state: CartState) => state.videos.length,
@@ -106,7 +118,7 @@ export const cartSlice = createSlice({
   },
 });
 
-export const { openCartDrawer, closeCartDrawer } = cartSlice.actions;
+export const { openCartDrawer, closeCartDrawer, deleteCartItem } = cartSlice.actions;
 
 export const { selectVideosCount, selectFotosCount, selectMusicsCount } = cartSlice.selectors;
 

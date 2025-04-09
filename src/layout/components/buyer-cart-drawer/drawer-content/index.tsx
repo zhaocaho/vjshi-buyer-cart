@@ -5,16 +5,10 @@ import ProductItem from "./ProductItem";
 import { useAppDispatch, useAppSelector } from "@/hooks/reduxHooks";
 import TabTitle from "./TabTitle";
 import BuyerPanel from "./BuyerPanel";
-import { CartItem, fetchCartItems } from "@/store/slices/cartSlices";
+import { CartItem, CartItemType, deleteCartItem, fetchCartItems } from "@/store/slices/cartSlices";
 import { areArraysEqual } from "@/utils/helper";
 import { CartItemAuditStatus, LicType } from "@/api/cart";
 import NoProduct from "./NoProduct";
-
-enum CartItemType {
-  video = "video",
-  foto = "foto",
-  music = "music",
-}
 
 export default function DrawerContent() {
   const dispatch = useAppDispatch();
@@ -100,6 +94,10 @@ export default function DrawerContent() {
       }
     });
   };
+
+  const handleDeleteItem = (itemId: number) => {
+    dispatch(deleteCartItem({ id: itemId, type: activeTab }));
+  };
   const calculateTotalPrice = () => {
     return activeTabItems
       .filter((item) => selectItemIds.includes(getItemId(item)))
@@ -120,18 +118,22 @@ export default function DrawerContent() {
         children: (
           <form className="flex h-full flex-col" onSubmit={handleSubmit}>
             <div className="flex w-full flex-1 flex-col overflow-auto px-5 pt-5 lg:px-0 lg:pt-3">
-              {tab.items.map((item, index) => (
-                <div key={index}>
-                  <ProductItem
-                    item={item}
-                    id={getItemId(item)}
-                    checked={selectItemIds.includes(getItemId(item))}
-                    onChange={handleItemSelect}
-                    price={getLicTypePrice(item)}
-                  />
-                </div>
-              ))}
-              {tab.items.length === 0 && <NoProduct />}
+              {tab.items.length === 0 ? (
+                <NoProduct />
+              ) : (
+                tab.items.map((item, index) => (
+                  <div key={index}>
+                    <ProductItem
+                      item={item}
+                      id={getItemId(item)}
+                      checked={selectItemIds.includes(getItemId(item))}
+                      onChange={handleItemSelect}
+                      onDeleteItem={handleDeleteItem}
+                      price={getLicTypePrice(item)}
+                    />
+                  </div>
+                ))
+              )}
             </div>
             <hr
               aria-orientation="horizontal"

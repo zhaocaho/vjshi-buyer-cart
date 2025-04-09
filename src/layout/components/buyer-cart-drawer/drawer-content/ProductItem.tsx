@@ -8,14 +8,11 @@ interface Props {
   id: number;
   price: number;
   onChange?: (itemId: number) => void;
+  onDeleteItem?: (itemId: number) => void;
 }
-export default function ProductItem({ item, id, checked, price, onChange }: Props) {
+export default function ProductItem({ item, id, checked, price, onChange, onDeleteItem }: Props) {
   const handleCheckboxChange = () => {
     onChange?.(id);
-  };
-
-  const onRemove = () => {
-    console.log("移除此itemId：", id);
   };
 
   const getLicTypeName = (item: CartItem) => {
@@ -110,7 +107,9 @@ export default function ProductItem({ item, id, checked, price, onChange }: Prop
           <button
             type="button"
             className="active:text-black-50 hidden cursor-pointer text-sm font-medium whitespace-nowrap transition select-none group-hover/item:block hover:text-[#808080] disabled:text-neutral-50 data-loading:text-transparent lg:block"
-            onClick={onRemove}
+            onClick={() => {
+              onDeleteItem?.(id);
+            }}
           >
             移除
           </button>
