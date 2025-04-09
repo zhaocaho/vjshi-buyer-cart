@@ -46,7 +46,7 @@ export default function ProductItem({ item, id, checked, onChange }: Props) {
                 {item.title}
               </a>
             </div>
-            <div className="flex w-full items-center space-x-3 text-sm">
+            <div className="flex w-full items-center space-x-2 text-sm">
               <span className="truncate text-[#404040]">ID：{id}</span>
               <hr
                 aria-orientation="vertical"
