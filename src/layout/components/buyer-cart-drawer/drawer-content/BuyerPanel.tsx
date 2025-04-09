@@ -25,19 +25,19 @@ export default function BuyerPanel({
       <div className="flex w-full justify-between">
         <div className="flex items-center">
           <Checkbox checked={checked} onChange={handleCheckboxChange} />
-          <span>全选</span>
+          <span className="ml-2">全选</span>
         </div>
         <div className="flex flex-1 items-center justify-end space-x-3 text-base">
-          <div className="text-neutral-60 flex space-x-1">
+          <div className="text-[#404040;] flex space-x-1 text-[14px]">
             <span>已选</span>
             <span>{selectCount}</span>
             <span>件</span>
           </div>
-          <div className="flex items-center space-x-1">
+          <div className="flex items-center space-x-1 text-[14px]">
             <span className="font-medium">总计：</span>
             <div className="flex items-center space-x-1 text-[#EE4A4A]">
-              <span className="text-4xl font-medium">{totalPrice}</span>
-              <span className="pt-[18px] pb-[10px] leading-none">元</span>
+              <span className="text-[28px] font-medium">{totalPrice}</span>
+              <span className="pt-[14px] pb-[10px] leading-none">元</span>
             </div>
           </div>
         </div>

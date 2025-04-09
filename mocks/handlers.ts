@@ -7,7 +7,7 @@ export const handlers = [
         {
           auditStatus: "SUCCESS",
           coverImage: "https://picsum.photos/300/200",
-          price: 10,
+          price: 738,
           softwareType: "视频素材",
           title: "视频一",
           licType: "NP",
