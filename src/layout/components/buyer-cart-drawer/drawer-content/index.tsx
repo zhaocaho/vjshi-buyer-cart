@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Tabs } from "antd";
 import styles from "./drawer-content.module.css";
 import ProductItem from "./ProductItem";
 import { useAppDispatch, useAppSelector } from "@/hooks/reduxHooks";
 import TabTitle from "./TabTitle";
 import BuyerPanel from "./BuyerPanel";
-import { CartItem, fetchCartItems } from "@/store/slices/cartSlices";
+import { CartItem, CartItemAuditStatus, fetchCartItems } from "@/store/slices/cartSlices";
+import { areArraysEqual } from "@/utils/helper";
 
 enum CartItemType {
   video = "video",
@@ -19,23 +20,25 @@ export default function DrawerContent() {
   const { videos, fotos, musics } = useAppSelector((state) => state.cart);
   const [selectItemIds, setSelectItemIds] = useState<number[]>([]);
 
-  const tabDataList: { key: CartItemType; title: string; items: CartItem[] }[] = [
-    {
-      key: CartItemType.video,
-      title: "视频",
-      items: videos,
-    },
-    {
-      key: CartItemType.foto,
-      title: "图片",
-      items: fotos,
-    },
-    {
-      key: CartItemType.music,
-      title: "音乐",
-      items: musics,
-    },
-  ];
+  const tabDataList: { key: CartItemType; title: string; items: CartItem[] }[] = useMemo(() => {
+    return [
+      {
+        key: CartItemType.video,
+        title: "视频",
+        items: videos,
+      },
+      {
+        key: CartItemType.foto,
+        title: "图片",
+        items: fotos,
+      },
+      {
+        key: CartItemType.music,
+        title: "音乐",
+        items: musics,
+      },
+    ];
+  }, [videos, fotos, musics]);
 
   useEffect(() => {
     dispatch(fetchCartItems());
@@ -59,6 +62,22 @@ export default function DrawerContent() {
     console.log("总价:", calculateTotalPrice());
   };
 
+  const activeTabItems = useMemo(() => {
+    return tabDataList.find((item) => item.key === activeTab)?.items as CartItem[];
+  }, [activeTab, tabDataList]);
+
+  const auditStatusSuccessItems = useMemo(() => {
+    return activeTabItems.filter((item) => item.auditStatus === CartItemAuditStatus.SUCCESS);
+  }, [activeTabItems]);
+
+  const handleSelectAll = (checked: boolean) => {
+    if (checked) {
+      setSelectItemIds(auditStatusSuccessItems.map((item) => getItemId(item)));
+    } else {
+      setSelectItemIds([]);
+    }
+  };
+
   const handleItemSelect = (itemId: number) => {
     setSelectItemIds((prev) => {
       const index = prev.indexOf(itemId);
@@ -69,18 +88,8 @@ export default function DrawerContent() {
       }
     });
   };
-
-  const handleSelectAll = (checked: boolean, items: CartItem[]) => {
-    if (checked) {
-      setSelectItemIds(items.map((item) => getItemId(item)));
-    } else {
-      setSelectItemIds([]);
-    }
-  };
-
   const calculateTotalPrice = () => {
-    const items = tabDataList.find((item) => item.key === activeTab)?.items as CartItem[];
-    return items
+    return activeTabItems
       .filter((item) => selectItemIds.includes(getItemId(item)))
       .reduce((sum, item) => sum + item.price, 0);
   };
@@ -115,11 +124,14 @@ export default function DrawerContent() {
               className="h-[0px] w-full border-0 border-b border-current text-[#F0F0F0]"
             ></hr>
             <BuyerPanel
-              checked={tab.items.length === selectItemIds.length}
+              checked={areArraysEqual(
+                selectItemIds,
+                auditStatusSuccessItems.map((item) => getItemId(item)),
+              )}
               totalPrice={calculateTotalPrice()}
               selectCount={selectItemIds.length}
               onChange={(checked) => {
-                handleSelectAll(checked, tab.items);
+                handleSelectAll(checked);
               }}
               disabled={selectItemIds.length === 0}
             />

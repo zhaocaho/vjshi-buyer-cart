@@ -1,8 +1,13 @@
 import { getCartFotos, getCartMusics, getCartVideos } from "@/api/cart";
 import { createAsyncThunk, createSelector, createSlice } from "@reduxjs/toolkit";
 
+export enum CartItemAuditStatus {
+  SUCCESS = "SUCCESS",
+  FAIL = "FAIL",
+}
+
 interface BaseCartItem {
-  auditStatus: "SUCCESS" | "FAIL";
+  auditStatus: CartItemAuditStatus;
   coverImage: string;
   price: number;
   softwareType: string;
@@ -37,7 +42,7 @@ const initialState: CartState = {
   fotos: [],
   musics: [],
   showCartIcon: false,
-  cartDrawerOpen: false,
+  cartDrawerOpen: true,
 };
 
 export const fetchCartItems = createAsyncThunk("cart/fetchItems", async () => {

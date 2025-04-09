@@ -1,5 +1,5 @@
 import { Checkbox } from "antd";
-import { CartItem } from "@/store/slices/cartSlices";
+import { CartItem, CartItemAuditStatus } from "@/store/slices/cartSlices";
 
 interface Props {
   item: CartItem;
@@ -14,7 +14,11 @@ export default function ProductItem({ item, id, checked, onChange }: Props) {
 
   return (
     <label className="group/item flex flex-shrink-0 cursor-pointer space-x-4 rounded-[12px] p-5 hover:bg-[#F5F5F5]">
-      <Checkbox checked={checked} onChange={handleCheckboxChange} />
+      <Checkbox
+        checked={checked}
+        onChange={handleCheckboxChange}
+        disabled={item.auditStatus === CartItemAuditStatus.FAIL}
+      />
       <div className="flex flex-1 flex-col space-y-3 overflow-hidden">
         <div className="flex items-center text-base">
           <div className="relative flex h-[66px] w-[99px] flex-shrink-0 overflow-hidden rounded-sm">
