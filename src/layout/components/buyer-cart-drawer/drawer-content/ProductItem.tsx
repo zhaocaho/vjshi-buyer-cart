@@ -6,9 +6,10 @@ interface Props {
   item: CartItem;
   checked: boolean;
   id: number;
+  price: number;
   onChange?: (itemId: number) => void;
 }
-export default function ProductItem({ item, id, checked, onChange }: Props) {
+export default function ProductItem({ item, id, checked, price, onChange }: Props) {
   const handleCheckboxChange = () => {
     onChange?.(id);
   };
@@ -93,7 +94,7 @@ export default function ProductItem({ item, id, checked, onChange }: Props) {
             <div className="flex items-center space-x-4 text-sm">
               <div className="flex flex-1 text-[#404040]">个人授权</div>
               <div className="flex flex-shrink-0 items-center space-x-[2px] text-black">
-                <span className="text-xl font-medium">{item.price}</span>
+                <span className="text-xl font-medium">{price}</span>
                 <span className="pt-[9px] pb-[7px] leading-none">元</span>
               </div>
             </div>

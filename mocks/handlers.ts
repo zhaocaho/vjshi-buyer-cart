@@ -28,7 +28,7 @@ export const handlers = [
           price: 50,
           softwareType: "视频素材",
           title: "视频三",
-          licType: "NP",
+          licType: "LP",
           vid: 9991,
         },
         {
@@ -37,7 +37,7 @@ export const handlers = [
           price: 50,
           softwareType: "视频素材",
           title: "视频四",
-          licType: "NP",
+          licType: "LPPLUS",
           vid: 9992,
         },
       ],

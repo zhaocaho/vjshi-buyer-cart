@@ -7,7 +7,7 @@ import TabTitle from "./TabTitle";
 import BuyerPanel from "./BuyerPanel";
 import { CartItem, fetchCartItems } from "@/store/slices/cartSlices";
 import { areArraysEqual } from "@/utils/helper";
-import { CartItemAuditStatus } from "@/api/cart";
+import { CartItemAuditStatus, LicType } from "@/api/cart";
 
 enum CartItemType {
   video = "video",
@@ -49,6 +49,16 @@ export default function DrawerContent() {
     if ("vid" in item) return item.vid;
     if ("fid" in item) return item.fid;
     return item.mid;
+  };
+  const getLicTypePrice = (item: CartItem) => {
+    switch (item.licType) {
+      case LicType.NP:
+        return item.price;
+      case LicType.LP:
+        return item.price * 4;
+      case LicType.LPPLUS:
+        return item.price * 10;
+    }
   };
 
   const handleTabChange = (key: string) => {
@@ -92,7 +102,7 @@ export default function DrawerContent() {
   const calculateTotalPrice = () => {
     return activeTabItems
       .filter((item) => selectItemIds.includes(getItemId(item)))
-      .reduce((sum, item) => sum + item.price, 0);
+      .reduce((sum, item) => sum + getLicTypePrice(item), 0);
   };
 
   return (
@@ -116,6 +126,7 @@ export default function DrawerContent() {
                     id={getItemId(item)}
                     checked={selectItemIds.includes(getItemId(item))}
                     onChange={handleItemSelect}
+                    price={getLicTypePrice(item)}
                   />
                 </div>
               ))}
