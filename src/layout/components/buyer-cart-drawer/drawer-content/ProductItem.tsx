@@ -38,7 +38,7 @@ export default function ProductItem({ item, id, checked, price, onChange, onDele
       </label>
       <div className="flex flex-1 flex-col space-y-3 overflow-hidden">
         <div className="flex items-center text-base">
-          <div className="relative flex h-[66px] w-[99px] flex-shrink-0 overflow-hidden rounded-sm">
+          <div className="relative flex h-[66px] w-[117px] flex-shrink-0 overflow-hidden rounded-sm">
             <a className="inline-block h-full w-full" target="_blank" href="/">
               <div className="aspect-[3/2] overflow-hidden">
                 <img
