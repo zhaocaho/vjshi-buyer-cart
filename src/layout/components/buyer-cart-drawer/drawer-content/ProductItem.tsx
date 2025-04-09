@@ -1,18 +1,14 @@
-import { useState } from "react";
-import { Checkbox, CheckboxChangeEvent } from "antd";
+import { Checkbox } from "antd";
 import { CartItem } from "@/store/slices/cartSlices";
 
 interface Props {
   item: CartItem;
-  onCheck?: (checked: boolean) => void;
+  checked: boolean;
+  onChange?: (item: CartItem) => void;
 }
-export default function ProductItem({ item, onCheck }: Props) {
-  const [checked, setChecked] = useState(false);
-
-  const handleCheckboxChange = (e: CheckboxChangeEvent) => {
-    const newChecked = e.target.checked;
-    setChecked(newChecked);
-    onCheck?.(newChecked);
+export default function ProductItem({ item, checked, onChange }: Props) {
+  const handleCheckboxChange = () => {
+    onChange?.(item);
   };
 
   const getItemId = (item: CartItem) => {

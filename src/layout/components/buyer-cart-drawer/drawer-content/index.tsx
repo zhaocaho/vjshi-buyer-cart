@@ -16,6 +16,7 @@ enum CartItemType {
 export default function DrawerContent() {
   const [activeTab, setActiveTab] = useState<CartItemType>(CartItemType.video);
   const { videos, fotos, musics } = useAppSelector((state) => state.cart);
+  const [selectItems, setSelectItems] = useState<CartItem[]>([]);
 
   const tabDataList: { key: CartItemType; title: string; items: CartItem[] }[] = [
     {
@@ -36,11 +37,37 @@ export default function DrawerContent() {
   ];
   const handleTabChange = (key: string) => {
     setActiveTab(key as CartItemType);
+    setSelectItems([]);
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("购买");
+  };
+
+  const handleItemSelect = (item: CartItem) => {
+    setSelectItems((prev) => {
+      const index = prev.indexOf(item);
+      if (index === -1) {
+        return [...prev, item];
+      } else {
+        return prev.filter((selectItem) => selectItem !== item);
+      }
+    });
+  };
+
+  const handleSelectAll = (checked: boolean, items: CartItem[]) => {
+    if (checked) {
+      setSelectItems(items);
+    } else {
+      setSelectItems([]);
+    }
+  };
+
+  const calculateTotalPrice = () => {
+    {
+      return selectItems.reduce((total, item) => total + item.price, 0);
+    }
   };
 
   return (
@@ -59,7 +86,11 @@ export default function DrawerContent() {
             <div className="flex w-full flex-1 flex-col overflow-auto px-5 pt-5 lg:px-0 lg:pt-3">
               {tab.items.map((item, index) => (
                 <div key={index}>
-                  <ProductItem item={item} />
+                  <ProductItem
+                    item={item}
+                    checked={selectItems.includes(item)}
+                    onChange={handleItemSelect}
+                  />
                 </div>
               ))}
             </div>
@@ -67,7 +98,14 @@ export default function DrawerContent() {
               aria-orientation="horizontal"
               className="h-[0px] w-full border-0 border-b border-current text-[#F0F0F0]"
             ></hr>
-            <BuyerPanel checked={true} />
+            <BuyerPanel
+              checked={tab.items.length === selectItems.length}
+              totalPrice={calculateTotalPrice()}
+              selectCount={selectItems.length}
+              onChange={(checked) => {
+                handleSelectAll(checked, tab.items);
+              }}
+            />
           </form>
         ),
       }))}

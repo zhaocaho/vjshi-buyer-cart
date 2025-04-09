@@ -5,6 +5,7 @@ import App from "./App.tsx";
 import { worker } from "../mocks/browser.ts";
 import { store } from "./store/index.ts";
 import { Provider } from "react-redux";
+import "@ant-design/v5-patch-for-react-19";
 
 //TODO 为了方便项目掩饰，mock接口这里未区分环境。
 worker.start().then(() => {
@@ -13,6 +14,6 @@ worker.start().then(() => {
       <Provider store={store}>
         <App />
       </Provider>
-    </StrictMode>
+    </StrictMode>,
   );
 });
