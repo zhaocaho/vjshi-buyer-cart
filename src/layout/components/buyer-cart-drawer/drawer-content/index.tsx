@@ -8,6 +8,7 @@ import BuyerPanel from "./BuyerPanel";
 import { CartItem, fetchCartItems } from "@/store/slices/cartSlices";
 import { areArraysEqual } from "@/utils/helper";
 import { CartItemAuditStatus, LicType } from "@/api/cart";
+import NoProduct from "./NoProduct";
 
 enum CartItemType {
   video = "video",
@@ -130,6 +131,7 @@ export default function DrawerContent() {
                   />
                 </div>
               ))}
+              {tab.items.length === 0 && <NoProduct />}
             </div>
             <hr
               aria-orientation="horizontal"

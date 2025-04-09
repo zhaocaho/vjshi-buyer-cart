@@ -44,7 +44,7 @@ export default function BuyerPanel({
       </div>
       <button
         disabled={disabled}
-        className="h-14 w-full rounded-[55px] bg-black text-base text-white transition hover:bg-black/80 disabled:cursor-not-allowed disabled:bg-[#cccccc]"
+        className="h-14 w-full rounded-[55px] bg-black text-base text-white transition hover:bg-black/80 disabled:cursor-not-allowed disabled:bg-[#ccc]"
       >
         立即购买
       </button>
