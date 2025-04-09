@@ -4,10 +4,17 @@ interface Props {
   checked: boolean;
   totalPrice: number;
   selectCount: number;
+  disabled?: boolean;
   onChange?: (e: boolean) => void;
 }
 
-export default function BuyerPanel({ checked = false, selectCount, totalPrice, onChange }: Props) {
+export default function BuyerPanel({
+  checked = false,
+  selectCount,
+  disabled,
+  totalPrice,
+  onChange,
+}: Props) {
   const handleCheckboxChange = (e: CheckboxChangeEvent) => {
     const newChecked = e.target.checked;
     onChange?.(newChecked);
@@ -35,7 +42,12 @@ export default function BuyerPanel({ checked = false, selectCount, totalPrice, o
           </div>
         </div>
       </div>
-      <button className="h-14 w-full rounded-[55px] bg-black text-base text-white">立即购买</button>
+      <button
+        disabled={disabled}
+        className="h-14 w-full rounded-[55px] bg-black text-base text-white transition hover:bg-black/80 disabled:cursor-not-allowed disabled:bg-[#cccccc]"
+      >
+        立即购买
+      </button>
     </div>
   );
 }

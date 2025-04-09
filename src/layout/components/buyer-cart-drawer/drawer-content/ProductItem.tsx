@@ -4,17 +4,12 @@ import { CartItem } from "@/store/slices/cartSlices";
 interface Props {
   item: CartItem;
   checked: boolean;
-  onChange?: (item: CartItem) => void;
+  id: number;
+  onChange?: (itemId: number) => void;
 }
-export default function ProductItem({ item, checked, onChange }: Props) {
+export default function ProductItem({ item, id, checked, onChange }: Props) {
   const handleCheckboxChange = () => {
-    onChange?.(item);
-  };
-
-  const getItemId = (item: CartItem) => {
-    if ("vid" in item) return item.vid;
-    if ("fid" in item) return item.fid;
-    if ("mid" in item) return item.mid;
+    onChange?.(id);
   };
 
   return (
@@ -45,7 +40,7 @@ export default function ProductItem({ item, checked, onChange }: Props) {
               </a>
             </div>
             <div className="flex w-full items-center space-x-3 text-sm">
-              <span className="text-neutral-60 truncate">ID：{getItemId(item)}</span>
+              <span className="text-neutral-60 truncate">ID：{id}</span>
               <hr
                 aria-orientation="vertical"
                 className="h-[12px] w-[1px] border-0 border-l border-solid border-current text-[#CCCCCC]"

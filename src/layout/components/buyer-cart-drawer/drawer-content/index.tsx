@@ -16,7 +16,7 @@ enum CartItemType {
 export default function DrawerContent() {
   const [activeTab, setActiveTab] = useState<CartItemType>(CartItemType.video);
   const { videos, fotos, musics } = useAppSelector((state) => state.cart);
-  const [selectItems, setSelectItems] = useState<CartItem[]>([]);
+  const [selectItemIds, setSelectItemIds] = useState<number[]>([]);
 
   const tabDataList: { key: CartItemType; title: string; items: CartItem[] }[] = [
     {
@@ -35,39 +35,49 @@ export default function DrawerContent() {
       items: musics,
     },
   ];
+
+  const getItemId = (item: CartItem) => {
+    if ("vid" in item) return item.vid;
+    if ("fid" in item) return item.fid;
+    return item.mid;
+  };
+
   const handleTabChange = (key: string) => {
     setActiveTab(key as CartItemType);
-    setSelectItems([]);
+    setSelectItemIds([]);
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("购买");
+    console.log("业务线:", activeTab);
+    console.log("ids:", selectItemIds);
+    console.log("总价:", calculateTotalPrice());
   };
 
-  const handleItemSelect = (item: CartItem) => {
-    setSelectItems((prev) => {
-      const index = prev.indexOf(item);
+  const handleItemSelect = (itemId: number) => {
+    setSelectItemIds((prev) => {
+      const index = prev.indexOf(itemId);
       if (index === -1) {
-        return [...prev, item];
+        return [...prev, itemId];
       } else {
-        return prev.filter((selectItem) => selectItem !== item);
+        return prev.filter((id) => id !== itemId);
       }
     });
   };
 
   const handleSelectAll = (checked: boolean, items: CartItem[]) => {
     if (checked) {
-      setSelectItems(items);
+      setSelectItemIds(items.map((item) => getItemId(item)));
     } else {
-      setSelectItems([]);
+      setSelectItemIds([]);
     }
   };
 
   const calculateTotalPrice = () => {
-    {
-      return selectItems.reduce((total, item) => total + item.price, 0);
-    }
+    const items = tabDataList.find((item) => item.key === activeTab)?.items as CartItem[];
+    return items
+      .filter((item) => selectItemIds.includes(getItemId(item)))
+      .reduce((sum, item) => sum + item.price, 0);
   };
 
   return (
@@ -88,7 +98,8 @@ export default function DrawerContent() {
                 <div key={index}>
                   <ProductItem
                     item={item}
-                    checked={selectItems.includes(item)}
+                    id={getItemId(item)}
+                    checked={selectItemIds.includes(getItemId(item))}
                     onChange={handleItemSelect}
                   />
                 </div>
@@ -99,12 +110,13 @@ export default function DrawerContent() {
               className="h-[0px] w-full border-0 border-b border-current text-[#F0F0F0]"
             ></hr>
             <BuyerPanel
-              checked={tab.items.length === selectItems.length}
+              checked={tab.items.length === selectItemIds.length}
               totalPrice={calculateTotalPrice()}
-              selectCount={selectItems.length}
+              selectCount={selectItemIds.length}
               onChange={(checked) => {
                 handleSelectAll(checked, tab.items);
               }}
+              disabled={selectItemIds.length === 0}
             />
           </form>
         ),
