@@ -31,7 +31,7 @@ const initialState: CartState = {
   fotos: [],
   musics: [],
   showCartIcon: false,
-  cartDrawerOpen: true,
+  cartDrawerOpen: false,
 };
 
 export const fetchCartItems = createAsyncThunk("cart/fetchItems", async () => {
@@ -46,7 +46,8 @@ export const fetchCartItems = createAsyncThunk("cart/fetchItems", async () => {
   const musics = musicResponse.data;
 
   if (videos.length > 0) {
-    const response = await getVideoLicTypesBought();
+    const vids = videos.map(({ vid }) => vid);
+    const response = await getVideoLicTypesBought(vids);
     const boughtIds = response.data.map(({ vid }) => vid);
     videos.forEach((video) => {
       if (boughtIds.includes(video.vid)) {
@@ -56,7 +57,8 @@ export const fetchCartItems = createAsyncThunk("cart/fetchItems", async () => {
   }
 
   if (fotos.length > 0) {
-    const response = await getFotoLicTypesBought();
+    const fids = fotos.map(({ fid }) => fid);
+    const response = await getFotoLicTypesBought(fids);
     const boughtIds = response.data.map(({ fid }) => fid);
     fotos.forEach((foto) => {
       if (boughtIds.includes(foto.fid)) {
@@ -66,7 +68,8 @@ export const fetchCartItems = createAsyncThunk("cart/fetchItems", async () => {
   }
 
   if (musics.length > 0) {
-    const response = await getMusicLicTypesBought();
+    const mids = musics.map(({ mid }) => mid);
+    const response = await getMusicLicTypesBought(mids);
     const boughtIds = response.data.map(({ mid }) => mid);
     musics.forEach((music) => {
       if (boughtIds.includes(music.mid)) {

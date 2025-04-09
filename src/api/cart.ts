@@ -1,4 +1,4 @@
-import { fetchData } from "@/utils/request";
+import { createQueryString, fetchData } from "@/utils/request";
 
 export enum CartItemAuditStatus {
   SUCCESS = "SUCCESS",
@@ -60,14 +60,25 @@ export function getCartMusics() {
   return fetchData<{ data: MusicCartItem[] }>("/vjm/cart/music/musics");
 }
 
-export function getVideoLicTypesBought() {
-  return fetchData<{ data: VideoLicTypesBought[] }>("/vjh/video/download/lic-types-bought");
+export function getVideoLicTypesBought(ids: number[]) {
+  const paramsString = createQueryString(ids, "vids");
+  return fetchData<{ data: VideoLicTypesBought[] }>(
+    `/vjh/video/download/lic-types-bought${paramsString}`,
+  );
 }
 
-export function getFotoLicTypesBought() {
-  return fetchData<{ data: FotoLicTypesBought[] }>("/vjf/foto/download/lic-types-bought");
+export function getFotoLicTypesBought(ids: number[]) {
+  const paramsString = createQueryString(ids, "fids");
+
+  return fetchData<{ data: FotoLicTypesBought[] }>(
+    `/vjf/foto/download/lic-types-bought${paramsString}`,
+  );
 }
 
-export function getMusicLicTypesBought() {
-  return fetchData<{ data: MusicTypesBought[] }>("/vjm/music/download/lic-types-bought");
+export function getMusicLicTypesBought(ids: number[]) {
+  const paramsString = createQueryString(ids, "mids");
+
+  return fetchData<{ data: MusicTypesBought[] }>(
+    `/vjm/music/download/lic-types-bought${paramsString}`,
+  );
 }
