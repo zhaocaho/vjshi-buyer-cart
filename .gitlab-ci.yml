@@ -1,0 +1,40 @@
+stages:
+  - deploy
+  # - notify
+
+# cache: # 缓存
+#   paths:
+#     - node_modules
+
+deploy-job-prod:
+  stage: deploy
+  tags:
+    # runner的tag标签
+    - test
+  script:
+    # - npm install
+    # - npm run build
+    # 配置 oss
+    - ossutil64 config -e $OSS_END_POINT -i $OSS_ACCESS_KEY_ID -k $OSS_ACCESS_KEY_SECRET
+    # 部署制品文件到阿里云 oss test-zuo11-com 仓库
+    - ossutil64 cp -r -f ./dist oss://yanmoulei/vjshi-buyer-cart
+  artifacts:
+    paths:
+      - ./dist
+  # 只有当dist文件发生变化时才生效
+  only:
+    changes:
+      - dist/**/*
+# ossutil64 用法
+# -e endpoint, 设置Bucket所在地域的域名信息 OSS_END_POINT
+# -i accessKeyID, 访问密钥的一部分，用于标识用户身份，以对命令请求进行身份验证。OSS_ACCESS_KEY_ID
+# -k accessKeySecret, 访问OSS使用的访问凭证。OSS_ACCESS_KEY_SECRET
+
+# notify_success:
+#   stage: notify
+#   tags:
+#     # runner的tag标签
+#     - test
+#   script:
+#     - echo "Pipeline succeeded" | mail -s "Pipeline Status for $PROJECT_NAME" 243211921@qq.com
+#   when: on_success
