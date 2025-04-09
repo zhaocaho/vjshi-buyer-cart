@@ -8,12 +8,14 @@ import { Provider } from "react-redux";
 import "@ant-design/v5-patch-for-react-19";
 
 //TODO 为了方便项目掩饰，mock接口这里未区分环境。
-worker.start().then(() => {
-  createRoot(document.getElementById("root")!).render(
-    <StrictMode>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </StrictMode>,
-  );
-});
+worker
+  .start({ serviceWorker: { url: `${import.meta.env.BASE_URL}mockServiceWorker.js` } })
+  .then(() => {
+    createRoot(document.getElementById("root")!).render(
+      <StrictMode>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </StrictMode>,
+    );
+  });
