@@ -5,8 +5,9 @@ import ProductItem from "./ProductItem";
 import { useAppDispatch, useAppSelector } from "@/hooks/reduxHooks";
 import TabTitle from "./TabTitle";
 import BuyerPanel from "./BuyerPanel";
-import { CartItem, CartItemAuditStatus, fetchCartItems } from "@/store/slices/cartSlices";
+import { CartItem, fetchCartItems } from "@/store/slices/cartSlices";
 import { areArraysEqual } from "@/utils/helper";
+import { CartItemAuditStatus } from "@/api/cart";
 
 enum CartItemType {
   video = "video",

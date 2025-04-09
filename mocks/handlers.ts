@@ -84,4 +84,37 @@ export const handlers = [
       ],
     });
   }),
+
+  http.get("/vjh/video/download/lic-types-bought", () => {
+    return HttpResponse.json({
+      data: [
+        {
+          licTypes: [],
+          vid: 8884567,
+        },
+      ],
+    });
+  }),
+
+  http.get("/vjf/foto/download/lic-types-bought", () => {
+    return HttpResponse.json({
+      data: [
+        {
+          licTypes: [],
+          fid: 456,
+        },
+      ],
+    });
+  }),
+
+  http.get("/vjm/music/download/lic-types-bought", () => {
+    return HttpResponse.json({
+      data: [
+        {
+          licTypes: [],
+          mid: 123,
+        },
+      ],
+    });
+  }),
 ];

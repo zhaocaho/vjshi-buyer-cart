@@ -1,31 +1,15 @@
-import { getCartFotos, getCartMusics, getCartVideos } from "@/api/cart";
+import {
+  FotoCartItem,
+  getCartFotos,
+  getCartMusics,
+  getCartVideos,
+  getFotoLicTypesBought,
+  getMusicLicTypesBought,
+  getVideoLicTypesBought,
+  MusicCartItem,
+  VideoCartItem,
+} from "@/api/cart";
 import { createAsyncThunk, createSelector, createSlice } from "@reduxjs/toolkit";
-
-export enum CartItemAuditStatus {
-  SUCCESS = "SUCCESS",
-  FAIL = "FAIL",
-}
-
-interface BaseCartItem {
-  auditStatus: CartItemAuditStatus;
-  coverImage: string;
-  price: number;
-  softwareType: string;
-  title: string;
-  licType: "NP" | "LP" | "LPPLUS";
-}
-
-interface VideoCartItem extends BaseCartItem {
-  vid: number;
-}
-
-interface FotoCartItem extends BaseCartItem {
-  fid: number;
-}
-
-interface MusicCartItem extends BaseCartItem {
-  mid: number;
-}
 
 export type CartItem = VideoCartItem | FotoCartItem | MusicCartItem;
 
@@ -52,10 +36,47 @@ export const fetchCartItems = createAsyncThunk("cart/fetchItems", async () => {
     getCartMusics(),
   ]);
 
+  const videos = videosResponse.data;
+  const fotos = fotosResponse.data;
+  const musics = musicResponse.data;
+  console.log("videos");
+
+  if (videos.length > 0) {
+    const response = await getVideoLicTypesBought();
+    const boughtIds = response.data.map(({ vid }) => vid);
+    videos.forEach((video) => {
+      if (boughtIds.includes(video.vid)) {
+        video.bought = true;
+      }
+    });
+  }
+
+  if (fotos.length > 0) {
+    const response = await getFotoLicTypesBought();
+    const boughtIds = response.data.map(({ fid }) => fid);
+    fotos.forEach((foto) => {
+      if (boughtIds.includes(foto.fid)) {
+        foto.bought = true;
+      }
+    });
+  }
+
+  if (musics.length > 0) {
+    const response = await getMusicLicTypesBought();
+    const boughtIds = response.data.map(({ mid }) => mid);
+    musics.forEach((music) => {
+      if (boughtIds.includes(music.mid)) {
+        music.bought = true;
+      }
+    });
+  }
+
+  console.log("videos222");
+
   return {
-    videos: videosResponse.data,
-    fotos: fotosResponse.data,
-    musics: musicResponse.data,
+    videos,
+    fotos,
+    musics,
   };
 });
 
@@ -81,7 +102,6 @@ export const cartSlice = createSlice({
       state.videos = action.payload.videos;
       state.fotos = action.payload.fotos;
       state.musics = action.payload.musics;
-      console.log("执行");
     });
   },
 });

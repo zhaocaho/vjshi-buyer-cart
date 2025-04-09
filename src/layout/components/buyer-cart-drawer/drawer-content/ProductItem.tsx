@@ -1,5 +1,6 @@
 import { Checkbox } from "antd";
-import { CartItem, CartItemAuditStatus } from "@/store/slices/cartSlices";
+import { CartItem } from "@/store/slices/cartSlices";
+import { CartItemAuditStatus } from "@/api/cart";
 
 interface Props {
   item: CartItem;
