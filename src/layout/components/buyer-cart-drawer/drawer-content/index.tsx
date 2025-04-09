@@ -101,7 +101,7 @@ export default function DrawerContent() {
       className={styles.customTabs}
       tabBarGutter={40}
       tabBarStyle={{ margin: "0 40px", height: "56px" }}
-      style={{ flex: 1, minHeight: 0 }}
+      style={{ flex: 1, minHeight: 0, fontFamily: "PingFangSC" }}
       items={tabDataList.map((tab) => ({
         label: <TabTitle title={tab.title} count={tab.items.length} />,
         key: tab.key,
