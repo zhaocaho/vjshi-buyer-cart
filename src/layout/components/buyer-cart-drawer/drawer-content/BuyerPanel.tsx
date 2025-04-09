@@ -28,12 +28,12 @@ export default function BuyerPanel({
           <span className="ml-2">全选</span>
         </div>
         <div className="flex flex-1 items-center justify-end space-x-3 text-base">
-          <div className="text-[#404040;] flex space-x-1 text-[14px]">
+          <div className="text-[#404040;] flex space-x-1 text-sm">
             <span>已选</span>
             <span>{selectCount}</span>
             <span>件</span>
           </div>
-          <div className="flex items-center space-x-1 text-[14px]">
+          <div className="flex items-center space-x-1 text-sm">
             <span className="font-medium">总计：</span>
             <div className="flex items-center space-x-1 text-[#EE4A4A]">
               <span className="text-[28px] font-medium">{totalPrice}</span>

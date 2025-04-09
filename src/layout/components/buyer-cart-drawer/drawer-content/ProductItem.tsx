@@ -14,6 +14,10 @@ export default function ProductItem({ item, id, checked, price, onChange }: Prop
     onChange?.(id);
   };
 
+  const onRemove = () => {
+    console.log("移除此itemId：", id);
+  };
+
   return (
     <label className="group/item flex flex-shrink-0 cursor-pointer space-x-4 rounded-[12px] p-5 font-[PingFangSC] hover:bg-[#F5F5F5]">
       <label htmlFor="checkbox" className="flex h-[66px] items-center">
@@ -35,6 +39,11 @@ export default function ProductItem({ item, id, checked, price, onChange }: Prop
                   alt={item.title}
                   src={item.coverImage}
                 />
+                {item.auditStatus === CartItemAuditStatus.FAIL && (
+                  <div className="absolute top-0 left-0 flex h-full w-full items-center justify-center bg-black/50 text-sm text-[#FEFEFE]">
+                    已下架
+                  </div>
+                )}
               </div>
             </a>
           </div>
@@ -87,7 +96,11 @@ export default function ProductItem({ item, id, checked, price, onChange }: Prop
           </div>
         )}
         <div className="flex w-full items-center justify-between">
-          <button className="active:text-black-50 hidden cursor-pointer text-base font-medium whitespace-nowrap transition select-none group-hover/item:block hover:text-[#808080] disabled:text-neutral-50 data-loading:text-transparent lg:block">
+          <button
+            type="button"
+            className="active:text-black-50 hidden cursor-pointer text-sm font-medium whitespace-nowrap transition select-none group-hover/item:block hover:text-[#808080] disabled:text-neutral-50 data-loading:text-transparent lg:block"
+            onClick={onRemove}
+          >
             移除
           </button>
           <div className="flex w-full items-center justify-end">
