@@ -1,6 +1,6 @@
 import { Checkbox } from "antd";
 import { CartItem } from "@/store/slices/cartSlices";
-import { CartItemAuditStatus } from "@/api/cart";
+import { CartItemAuditStatus, LicType } from "@/api/cart";
 
 interface Props {
   item: CartItem;
@@ -16,6 +16,17 @@ export default function ProductItem({ item, id, checked, price, onChange }: Prop
 
   const onRemove = () => {
     console.log("移除此itemId：", id);
+  };
+
+  const getLicTypeName = (item: CartItem) => {
+    switch (item.licType) {
+      case LicType.NP:
+        return "个人授权";
+      case LicType.LP:
+        return "企业授权";
+      case LicType.LPPLUS:
+        return "企业PLUS授权";
+    }
   };
 
   return (
@@ -105,7 +116,7 @@ export default function ProductItem({ item, id, checked, price, onChange }: Prop
           </button>
           <div className="flex w-full items-center justify-end">
             <div className="flex items-center space-x-4 text-sm">
-              <div className="flex flex-1 text-[#404040]">个人授权</div>
+              <div className="flex flex-1 text-[#404040]">{getLicTypeName(item)}</div>
               <div className="flex flex-shrink-0 items-center space-x-[2px] text-black">
                 <span className="text-xl font-medium">{price}</span>
                 <span className="pt-[9px] pb-[7px] leading-none">元</span>
