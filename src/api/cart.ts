@@ -15,7 +15,7 @@ interface BaseCartItem {
   auditStatus: CartItemAuditStatus;
   coverImage: string;
   price: number;
-  softwareType: string;
+  softwareType?: string;
   title: string;
   licType: LicType;
   bought?: boolean;

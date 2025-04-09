@@ -67,11 +67,15 @@ export default function ProductItem({ item, id, checked, price, onChange, onDele
             </div>
             <div className="flex w-full items-center space-x-2 text-sm">
               <span className="truncate text-[#404040]">ID：{id}</span>
-              <hr
-                aria-orientation="vertical"
-                className="h-[12px] w-[1px] border-0 border-l border-solid border-current text-[#CCCCCC]"
-              />
-              <span className="truncate text-[#404040]">类型：{item.softwareType}</span>
+              {item.softwareType && (
+                <>
+                  <hr
+                    aria-orientation="vertical"
+                    className="h-[12px] w-[1px] border-0 border-l border-solid border-current text-[#CCCCCC]"
+                  />
+                  <span className="truncate text-[#404040]">类型：{item.softwareType}</span>
+                </>
+              )}
             </div>
           </div>
         </div>

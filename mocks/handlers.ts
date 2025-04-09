@@ -17,19 +17,19 @@ export const handlers = [
           auditStatus: "FAIL",
           coverImage: "https://picsum.photos/300/200",
           price: 50,
-          softwareType: "视频素材",
+          softwareType: "AE模版",
           title: "视频二",
           licType: "NP",
-          vid: 999,
+          vid: 1184167,
         },
         {
           auditStatus: "SUCCESS",
           coverImage: "https://picsum.photos/300/200",
           price: 50,
-          softwareType: "视频素材",
+          softwareType: "C4D模版",
           title: "视频三",
           licType: "LP",
-          vid: 9991,
+          vid: 7659801,
         },
         {
           auditStatus: "SUCCESS",
@@ -38,7 +38,7 @@ export const handlers = [
           softwareType: "视频素材",
           title: "视频四",
           licType: "LPPLUS",
-          vid: 9992,
+          vid: 3409181,
         },
       ],
     });
@@ -54,7 +54,16 @@ export const handlers = [
           softwareType: "图片素材",
           title: "海边图",
           licType: "NP",
-          fid: 456,
+          fid: 1212312,
+        },
+        {
+          auditStatus: "SUCCESS",
+          coverImage: "https://picsum.photos/300/200",
+          price: 153,
+          softwareType: "AI模版",
+          title: "海边图1",
+          licType: "LP",
+          fid: 1888312,
         },
       ],
     });
@@ -67,19 +76,17 @@ export const handlers = [
           auditStatus: "SUCCESS",
           coverImage: "https://picsum.photos/300/200",
           price: 100,
-          softwareType: "音乐素材",
           title: "江南音乐",
           licType: "NP",
-          mid: 123,
+          mid: 9965432,
         },
         {
           auditStatus: "SUCCESS",
           coverImage: "https://picsum.photos/300/200",
           price: 100,
-          softwareType: "音乐素材",
           title: "江南音乐二",
           licType: "NP",
-          mid: 124,
+          mid: 9087654,
         },
       ],
     });
@@ -90,7 +97,7 @@ export const handlers = [
       data: [
         {
           licTypes: [],
-          vid: 8884567,
+          vid: 1184167,
         },
       ],
     });
@@ -101,7 +108,7 @@ export const handlers = [
       data: [
         {
           licTypes: [],
-          fid: 456,
+          fid: 1888312,
         },
       ],
     });
@@ -112,7 +119,7 @@ export const handlers = [
       data: [
         {
           licTypes: [],
-          mid: 123,
+          mid: 9087654,
         },
       ],
     });
